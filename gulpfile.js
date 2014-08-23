@@ -20,7 +20,7 @@ gulp.task('default', ['sass', 'jade', 'coffee', 'bower', 'server'], function() {
  * compile jade template into html
  */
 gulp.task('jade', function() {
-  return gulp.src('app/templates/*.jade')
+  return gulp.src('app/views/**/*.jade')
     .pipe(jade())
     .on('error', gutil.log )
     .pipe(gulp.dest('public/'));
@@ -31,12 +31,12 @@ gulp.task('jade', function() {
  * compile sass into css
  */
 gulp.task('sass', function() {
-  return gulp.src('app/stylesheets/*.scss')
+  return gulp.src('app/styles/**/*.scss')
     .pipe(sass({
-      loadPath: ['app/stylesheets', 'bower_components']
+      loadPath: ['app/styles', 'bower_components']
     }))
     .on('error', gutil.log )
-    .pipe(gulp.dest('public/stylesheets'));
+    .pipe(gulp.dest('public/styles'));
 });
 
 /**
@@ -44,7 +44,7 @@ gulp.task('sass', function() {
  * compile coffescript into javascript
  */
 gulp.task('coffee', function() {
-  return gulp.src('app/scripts/*.coffee')
+  return gulp.src('app/scripts/**/*.coffee')
     .pipe(sourcemaps.init())
     .pipe(coffee({ bare: true })).on('error', gutil.log)
     .pipe(sourcemaps.write('./maps'))
