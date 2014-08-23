@@ -22,6 +22,7 @@ gulp.task('default', ['sass', 'jade', 'coffee', 'bower', 'server'], function() {
 gulp.task('jade', function() {
   return gulp.src('app/templates/*.jade')
     .pipe(jade())
+    .on('error', gutil.log )
     .pipe(gulp.dest('public/'));
 });
 
@@ -31,7 +32,10 @@ gulp.task('jade', function() {
  */
 gulp.task('sass', function() {
   return gulp.src('app/stylesheets/*.scss')
-    .pipe(sass())
+    .pipe(sass({
+      loadPath: ['app/stylesheets', 'bower_components']
+    }))
+    .on('error', gutil.log )
     .pipe(gulp.dest('public/stylesheets'));
 });
 
