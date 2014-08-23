@@ -8,23 +8,28 @@ html( ng-app="monitor" )
     link( rel="stylesheet" href="styles/style.css" )
 
   body
-    .ui.page.grid
-      nav.ui.text.menu.navbar
+    .ui.page.grid.one.column
+      .row
+        nav.ui.text.menu.navbar
 
-        .left.menu
-          a.item( href="#/" ) Happytrace Monitor
-          a.item( href="#/" ) Dashboard
-          a.item( href="#/alarms" ) Alarms
-          a.item( href="#/events" ) Events
+          .left.menu
+            a.item( href="#/" ) Happytrace Monitor
+            a.item( href="#/" ) Dashboard
+            a.item( href="#/alarms" ) Alarms
+            a.item( href="#/events" ) Events
 
-        .right.menu
-          a.item( href="#" ) qhwa
+          .right.menu
+            a.item( href="#" ) qhwa
 
       .ui.divider
-      div( ng-view )
+      .column
+        .row( ng-view )
 
     script( src="lib/angular/angular.js" )
     script( src="lib/angular-route/angular-route.js" )
+    script( src="lib/moment/moment.js" )
+    script( src="lib/angular-moment/angular-moment.js" )
+
     script( src="scripts/app.js" )
     script( src="scripts/controllers/dashboard.js" )
     script( src="scripts/controllers/event-list.js" )

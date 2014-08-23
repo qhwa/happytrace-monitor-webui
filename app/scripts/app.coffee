@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('monitor', ['ngRoute'])
+angular.module('monitor', ['ngRoute', 'angularMoment'])
   .config ($routeProvider) ->
 
     $routeProvider

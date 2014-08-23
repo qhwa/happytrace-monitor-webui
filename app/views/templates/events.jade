@@ -1,1 +1,12 @@
 h1.ui.header events
+table.ui.sortable.table.segment
+    thead
+      tr
+        th time
+        th user
+        th action
+    tbody
+      tr( ng-repeat="evt in events" )
+        td {{evt.time | amDateFormat:'L dddd h:mm:ss a'}}
+        td {{evt.user}}
+        td {{evt.action}}
