@@ -1,0 +1,32 @@
+{
+  "name": "happytrace-monitor-webui",
+  "version": "0.1.0",
+  "homepage": "https://github.com/qhwa/happytrace-monitor-webui",
+  "authors": [
+    "qhwa <qhwa@163.com>"
+  ],
+  "description": "The web ui of happytrace monitor.",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "happytrace",
+    "monitor",
+    "ui"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.23",
+    "jquery": "~2.1.1",
+    "underscore": "~1.6.0",
+    "semantic-ui": "~0.19.0"
+  }
+}

@@ -6,8 +6,9 @@ var jade        = require('gulp-jade');
 var sourcemaps  = require('gulp-sourcemaps');
 var coffee      = require('gulp-coffee');
 var gutil       = require('gulp-util');
+var bowerSrc    = require('gulp-bower-src');
 
-gulp.task('default', ['sass', 'jade', 'coffee', 'server'], function() {
+gulp.task('default', ['sass', 'jade', 'coffee', 'bower', 'server'], function() {
 
   gulp.watch('**/*.scss', ['sass', reload]);
   gulp.watch('**/*.jade', ['jade', reload]);
@@ -56,4 +57,11 @@ gulp.task('server', function() {
       baseDir: 'public'
     }
   });
+});
+
+
+
+gulp.task('bower', function () {
+  bowerSrc()
+    .pipe(gulp.dest('public/lib'));
 });
