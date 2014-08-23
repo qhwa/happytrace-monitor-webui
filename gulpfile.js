@@ -7,12 +7,12 @@ var sourcemaps  = require('gulp-sourcemaps');
 var coffee      = require('gulp-coffee');
 var gutil       = require('gulp-util');
 var bowerSrc    = require('gulp-bower-src');
+var watch       = require('gulp-watch');
 
 gulp.task('default', ['sass', 'jade', 'coffee', 'bower', 'server'], function() {
-
-  gulp.watch('**/*.scss', ['sass', reload]);
-  gulp.watch('**/*.jade', ['jade', reload]);
-
+  watch({ glob: 'app/**/*.scss',   name: 'sass'}, ['sass', reload]);
+  watch({ glob: 'app/**/*.jade',   name: 'jade'}, ['jade', reload]);
+  watch({ glob: 'app/**/*.coffee', name: 'coffee'}, ['coffee', reload]);
 });
 
 /**
