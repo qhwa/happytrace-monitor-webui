@@ -8,6 +8,7 @@ var coffee      = require('gulp-coffee');
 var gutil       = require('gulp-util');
 var bowerSrc    = require('gulp-bower-src');
 var watch       = require('gulp-watch');
+var modRewrite  = require('connect-modrewrite');
 
 gulp.task('default', ['watch', 'sass', 'jade', 'coffee', 'bower', 'server']);
 
@@ -61,8 +62,13 @@ gulp.task('server', function() {
   browserSync({
     server: {
       baseDir: ['public', './'],
-      port: 3001
-    },
+      port: 3001,
+      middleware: [
+        modRewrite([
+          '^/(api/.*)$ http://localhost:3000/$1 [P]'
+        ])
+      ]
+    }
   });
 });
 

@@ -30,6 +30,7 @@
     "semantic-ui-sass": "*",
     "angular-route": "~1.2.23",
     "moment": "~2.8.2",
-    "angular-moment": "~0.8.0"
+    "angular-moment": "~0.8.0",
+    "pusher": "~2.2.2"
   }
 }

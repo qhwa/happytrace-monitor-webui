@@ -1,12 +1,16 @@
 h1.ui.header events
+
+.unread.ui.message( ng-show="true || upcoming > 0" )
+  {{upcoming}} more events received, click to view.
+
 table.ui.sortable.table.segment#events
-    thead
-      tr
-        th.time time
-        th.user user
-        th.action action
-    tbody
-      tr( ng-repeat="evt in events" )
-        td {{evt.created_at | amDateFormat:'L dddd h:mm:ss a'}}
-        td {{evt.user}}
-        td {{evt.user_action}}
+  thead
+    tr
+      th.time time
+      th.user user
+      th.action action
+  tbody
+    tr( ng-repeat="evt in events" )
+      td {{evt.created_at | amDateFormat:'L dddd h:mm:ss a'}}
+      td {{evt.user}}
+      td {{evt.user_action}}
