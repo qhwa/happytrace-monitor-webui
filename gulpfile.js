@@ -9,7 +9,9 @@ var gutil       = require('gulp-util');
 var bowerSrc    = require('gulp-bower-src');
 var watch       = require('gulp-watch');
 
-gulp.task('default', ['sass', 'jade', 'coffee', 'bower', 'server'], function() {
+gulp.task('default', ['watch', 'sass', 'jade', 'coffee', 'bower', 'server']);
+
+gulp.task('watch', function() {
   watch({ glob: 'app/**/*.scss',   name: 'sass'}, ['sass', reload]);
   watch({ glob: 'app/**/*.jade',   name: 'jade'}, ['jade', reload]);
   watch({ glob: 'app/**/*.coffee', name: 'coffee'}, ['coffee', reload]);
@@ -58,8 +60,9 @@ gulp.task('coffee', function() {
 gulp.task('server', function() {
   browserSync({
     server: {
-      baseDir: 'public'
-    }
+      baseDir: ['public', './'],
+      port: 3001
+    },
   });
 });
 
