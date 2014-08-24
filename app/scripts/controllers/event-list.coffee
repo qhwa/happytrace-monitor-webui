@@ -1,24 +1,33 @@
 angular.module('monitor')
   .controller 'EventListCtrl', ($scope, $http) ->
 
-    _.extend $scope,
+    _.extend $scope, {
 
       init: ->
         $scope.count = 0
         $scope.upcoming = 0
+        $scope.events = []
 
-        @loadData()
+        @reload()
         @initPusher()
 
-      loadData: ->
-        $http( url: '/api/events.json' )
-        .success (result) ->
+      reload: ->
+        @loadData().success (result) ->
           if result.success
             $scope.events = result.data.events
             $scope.count  = result.data.count
 
         .error (data, result, status, config) ->
           console.error 'fail to load events'
+
+      loadData: (since)->
+        params = {}
+        since && params['since'] = since
+
+        $http
+          url: '/api/events.json'
+          params: params
+
 
       initPusher: ->
 
@@ -30,8 +39,20 @@ angular.module('monitor')
           .subscribe('project_event_created_53f9a11171687739dc010000')
           .bind 'new_event', (data) ->
             $scope.$apply ->
-              console.log data.count, '-', $scope.count, 'new events received'
               $scope.upcoming = data.count - $scope.count
+
+
+      loadUpcoming: ->
+        since = $scope.events[0]?.created_at
+        @loadData( since ).success (result) ->
+          if result.success
+            $scope.events = result.data.events.concat( $scope.events )
+            $scope.count  = result.data.count
+            $scope.upcoming = 0
+
+        .error (data, result, status, config) ->
+          console.error 'fail to load events'
+    }
 
 
     $scope.init()

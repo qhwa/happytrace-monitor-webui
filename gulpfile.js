@@ -49,7 +49,7 @@ gulp.task('sass', function() {
 gulp.task('coffee', function() {
   return gulp.src('app/scripts/**/*.coffee')
     .pipe(sourcemaps.init())
-    .pipe(coffee({ bare: true })).on('error', gutil.log)
+    .pipe(coffee()).on('error', gutil.log)
     .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest('./public/scripts'));
 });
